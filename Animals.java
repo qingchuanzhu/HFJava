@@ -1,3 +1,8 @@
+interface Pet {
+	void beFriendly();
+	void play();
+}
+
 abstract class Animal {
 	String picture;
 	String food;
