@@ -16,6 +16,9 @@ class AnimalTestDrive {
 		MyAnimalList list = new MyAnimalList();
 		Dog a = new Dog();
 		Cat c = new Cat();
+		Hippo h = new Hippo("Buffy");
+
+		System.out.println("Hippo has name " + h.getName());
 		list.add(a);
 		list.add(c);
 
@@ -28,5 +31,6 @@ class AnimalTestDrive {
 		System.out.println("Class type of c " + c.getClass());
 		System.out.println("Hashcode of c " + c.hashCode());
 		System.out.println("Description of c " + c.toString());
+		System.out.println("Cat's name " + c.getName());
 	}
 }
