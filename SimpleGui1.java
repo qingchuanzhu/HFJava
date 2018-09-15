@@ -1,28 +1,35 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.*;
 
 class SimpleGui1 implements ActionListener {
 
 	JButton button;
+	JFrame frame;
 
 	void changeIt(){
 
 	}
 
 	void go() {
-		JFrame frame = new JFrame();
-		button = new JButton("click me");
-
-		button.addActionListener(this);
+		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add(button);
+
+		button = new JButton("change colors");
+		button.addActionListener(this);
+
+		MyDrawPanel drawPanel = new MyDrawPanel();
+
+		
+		frame.getContentPane().add(BorderLayout.SOUTH, button);
+		frame.getContentPane().add(BorderLayout.CENTER, drawPanel);
 
 		frame.setSize(300, 300);
 		frame.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		button.setText("I've been clicked");
+		frame.repaint();
 	}
 
 	public static void main(String[] args) {
