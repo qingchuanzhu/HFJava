@@ -21,11 +21,59 @@ class BeatBox {
 
 	// build GUI
 	void buildGUI() {
+		// Build up frame and background panel
 		theFrame = new JFrame("Cyber BeatBox");
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BorderLayout layout = new BorderLayout();
-		JPanel background = new JPanel(layout);
+		JPanel background = new JPanel(layout); // panel for grid, name labels and buttons
 		background.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+
+		// checkbox Grid
+		checkboxList = new ArrayList<JCheckBox>();
+		GridLayout grid = new GridLayout(16, 16);
+		grid.setVgap(0);
+		grid.setHgap(2);
+		mainPanel = new JPanel(grid);
+
+		for (int i = 0; i < 256; i++){
+			JCheckBox c = new JCheckBox();
+			c.setSelected(false);
+			checkboxList.add(c);
+			mainPanel.add(c);
+		}
+
+		// Name box
+		Box nameBox = new Box(BoxLayout.Y_AXIS);
+		for (int i =0; i< 16; i++) {
+			nameBox.add(new Label(instrumentNames[i]));
+		}
+
+		//button box
+		Box buttonBox = new Box(BoxLayout.Y_AXIS);
+
+		JButton start = new JButton("Start");
+		start.addActionListener(new MyStartListener());
+		buttonBox.add(start);
+
+		JButton stop = new JButton("Stop");
+		stop.addActionListener(new MyStopListener());
+		buttonBox.add(stop);
+
+		JButton upTempo = new JButton("Tempo Up");
+		upTempo.addActionListener(new MyUpTempoListener());
+		buttonBox.add(upTempo);
+
+		JButton downTempo = new JButton("Tempo Down");
+		downTempo.addActionListener(new MyDownTempoListenre());
+		buttonBox.add(downTempo);
+
+		// Add Each components to background panel
+		background.add(BorderLayout.EAST, buttonBox);
+		background.add(BorderLayout.WEST, nameBox);
+		background.add(BorderLayout.CENTER, mainPanel);
+
+		// Set up Midi
+		setUpMidi();
 
 		theFrame.getContentPane().add(background);
 
