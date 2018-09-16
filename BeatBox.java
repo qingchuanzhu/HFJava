@@ -97,7 +97,31 @@ class BeatBox {
 
 	// track build and start
 	void buildTrackAndStart() {
+		int[] trackList = null;
+		sequence.deleteTrack(track);
+		track = sequence.createTrack();
+		for (int i = 0; i < 16; i++) {
+			trackList = new int[16];
+			int key = instruments[i];
+			for (int j = 0; j < 16; j++) {
+				JCheckBox jc = checkboxList.get(j + 16 * i);
+				if (jc.isSelected()) {
+					trackList[j] = key;
+				} else {
+					trackList[j] = 0;
+				}
+			}
 
+			makeTracks(trackList);
+		}
+
+		try {
+			player.setSequence(sequence);
+			player.setLoopCount(player.LOOP_CONTINUOUSLY);
+			player.start();
+		} catch (Exception ex){
+
+		}
 	}
 
 	// Inner class - start button handler
