@@ -84,7 +84,15 @@ class BeatBox {
 
 	// Midi setup
 	void setUpMidi() {
-
+		try {
+			player = MidiSystem.getSequencer();
+			player.open();
+			sequence = new Sequence(Sequence.PPQ, 4);
+			track = sequence.createTrack();
+			player.setTempoInBPM(120);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	// track build and start
@@ -95,34 +103,42 @@ class BeatBox {
 	// Inner class - start button handler
 	class MyStartListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
-
+			buildTrackAndStart();
 		}	
 	}
 
 	// Inner class - stop button handler
 	class MyStopListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
-			
+			player.stop();
 		}
 	}
 
 	// Inner class - UpTempo handler
 	class MyUpTempoListener implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
-			
+			float tempoFactor = player.getTempoFactor();
+			player.setTempoFactor((float)(tempoFactor * 1.03));
 		}
 	}
 
 	// Inner class - DownTempo handler
 	class MyDownTempoListenre implements ActionListener {
 		public void actionPerformed(ActionEvent a) {
-			
+			float tempoFactor = player.getTempoFactor();
+			player.setTempoFactor((float)(tempoFactor * 0.97));	
 		}
 	}
 
 	// Helper method makeTrack
 	void makeTracks(int[] list) {
-
+		for (int i = 0; i < 16; i++) {
+			int key = list[i];
+			if (key != 0) {
+				track.add(makeEvent(144, 9, key, 100, i));
+				track.add(makeEvent(128, 9, key, 100, i + 1));
+			}
+		}
 	}
 
 	// Helper method makeEvent
