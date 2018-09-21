@@ -8,6 +8,7 @@ class DailyAdviceClient{
 			InputStreamReader streamReader = new InputStreamReader(s.getInputStream());
 			BufferedReader reader = new BufferedReader(streamReader);
 
+			System.out.println("Ready to read line");
 			String advice = reader.readLine();
 			System.out.println("Today you should: " + advice);
 			reader.close();

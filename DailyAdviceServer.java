@@ -12,6 +12,10 @@ class DailyAdviceServer {
 				Socket sock = serverSock.accept();
 				PrintWriter writer = new PrintWriter(sock.getOutputStream());
 				String advice = adviceList[0];
+
+				// Sleep, used to test client reaction on this, will client be blocked on readLine()?
+				Thread.sleep(8000);
+
 				writer.println(advice);
 				writer.close();
 			}
