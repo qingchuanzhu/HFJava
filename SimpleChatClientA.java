@@ -12,6 +12,7 @@ class SimpleChatClientA {
 	void go() {
 		// make GUI, call the setUpNetworking()
 		JFrame frame = new JFrame("Ludicrously Simple Chat Client");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mainPanel = new JPanel();
 		outgoing = new JTextField(20);
 		JButton sendButton = new JButton("Send");
@@ -22,6 +23,9 @@ class SimpleChatClientA {
 		setUpNetworking();
 		frame.setSize(400, 500);
 		frame.setVisible(true);
+		while (true) {
+			
+		}
 	}
 
 	private void setUpNetworking(){
