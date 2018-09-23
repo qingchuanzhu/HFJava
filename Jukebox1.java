@@ -36,3 +36,21 @@ class Jukebox1 {
 		new Jukebox1().go();
 	}
 }
+
+class Jukebox2 extends Jukebox1{
+
+	void go() {
+		getSongs();
+		System.out.println(songList);
+		Collections.sort(songList);
+		System.out.println(songList);
+
+		HashSet<Song> songSet = new HashSet<Song>();
+		songSet.addAll(songList);
+		System.out.println(songSet);
+	}
+
+	public static void main(String[] args) {
+		new Jukebox2().go();
+	}
+}
