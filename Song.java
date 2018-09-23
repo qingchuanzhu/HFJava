@@ -37,6 +37,15 @@ class Song implements Comparable<Song>{
 		return title + ":" + artist;
 	}
 
+	public boolean equals(Object aSong) {
+		Song s = (Song)aSong;
+		return title.equals(s.getTitle());
+	}
+
+	public int hashCode() {
+		return title.hashCode();
+	}
+
 	public int compareTo(Song s) {
 		return title.compareTo(s.getTitle());
 	}
