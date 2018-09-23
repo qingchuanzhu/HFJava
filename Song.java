@@ -1,4 +1,4 @@
-class Song {
+class Song implements Comparable<Song>{
 	private String title;
 	private String artist;
 	private String rating;
@@ -33,5 +33,9 @@ class Song {
 
 	public String toString() {
 		return title;
+	}
+
+	public int compareTo(Song s) {
+		return title.compareTo(s.getTitle());
 	}
 }

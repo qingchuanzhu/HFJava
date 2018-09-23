@@ -27,7 +27,7 @@ class Jukebox1 {
 
 	void addSong(String lineToParse) {
 		String[] tokens = lineToParse.split("/");
-		Song nextSong = Song(tokens[0], tokens[1], tokens[2], tokens[3]);
+		Song nextSong = new Song(tokens[0], tokens[1], tokens[2], tokens[3]);
 		songList.add(nextSong);
 	}
 
