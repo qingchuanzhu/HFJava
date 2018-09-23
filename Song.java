@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Song implements Comparable<Song>{
 	private String title;
 	private String artist;
@@ -32,10 +34,16 @@ class Song implements Comparable<Song>{
 	}
 
 	public String toString() {
-		return title;
+		return title + ":" + artist;
 	}
 
 	public int compareTo(Song s) {
 		return title.compareTo(s.getTitle());
+	}
+}
+
+class ArtistComparator implements Comparator<Song> {
+	public int compare(Song one, Song two) {
+		return one.getArtist().compareTo(two.getArtist());
 	}
 }

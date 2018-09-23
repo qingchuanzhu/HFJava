@@ -8,7 +8,8 @@ class Jukebox1 {
 	void go() {
 		getSongs();
 		System.out.println(songList);
-		Collections.sort(songList);
+		ArtistComparator artistCompare = new ArtistComparator();
+		Collections.sort(songList, artistCompare);
 		System.out.println(songList);
 	}
 
